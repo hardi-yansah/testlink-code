@@ -3,6 +3,7 @@ image:
 
 tasks:
   - init: |
+      sudo apt-get update
       sudo service mysql start
       mysql -u root -e "CREATE DATABASE testlink;"
       mysql -u root -e "CREATE USER 'testlink'@'localhost' IDENTIFIED BY 'testlink';"
@@ -17,10 +18,10 @@ tasks:
       cd /var/www/html/testlink
       sudo cp config_db.inc.php.example config_db.inc.php
       sudo sed -i "s/\$tlCfg->db->dbHost = 'localhost';/\$tlCfg->db->dbHost = 'localhost';/" config_db.inc.php
-      sudo sed -i "s/\$tlCfg->db->dbName = 'testlink';/\$tlCfg->db->dbName = 'testlink';/" config_db.inc.php
-      sudo sed -i "s/\$tlCfg->db->dbUser = 'testlink';/\$tlCfg->db->dbUser = 'testlink';/" config_db.inc.php
-      sudo sed -i "s/\$tlCfg->db->dbPass = 'testlink';/\$tlCfg->db->dbPass = 'testlink';/" config_db.inc.php
-      sudo service apache2 restart
+      sudo sed -i "s/\$tlCfg->db->dbName = '';/\$tlCfg->db->dbName = 'testlink';/" config_db.inc.php
+      sudo sed -i "s/\$tlCfg->db->dbUser = '';/\$tlCfg->db->dbUser = 'testlink';/" config_db.inc.php
+      sudo sed -i "s/\$tlCfg->db->dbPass = '';/\$tlCfg->db->dbPass = 'testlink';/" config_db.inc.php
+      sudo service apache2 start
 
 ports:
   - port: 8080

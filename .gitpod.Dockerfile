@@ -15,5 +15,8 @@ RUN sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None
 RUN echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.conf && \
     sudo a2enconf servername
 
+# Ensure ServerRoot is set correctly
+RUN sudo sed -i 's|^ServerRoot.*|ServerRoot "/etc/apache2"|' /etc/apache2/apache2.conf
+
 # Expose port 8080
 EXPOSE 8080
