@@ -2,7 +2,7 @@ FROM gitpod/workspace-full
 
 # Install Apache and MySQL
 RUN sudo apt-get update && \
-    sudo apt-get install -y apache2 mysql-server php php-mysql wget && \
+    DEBIAN_FRONTEND=noninteractive sudo apt-get install -y apache2 mysql-server php php-mysql wget && \
     sudo rm -rf /var/lib/apt/lists/*
 
 # Enable Apache mod_rewrite
